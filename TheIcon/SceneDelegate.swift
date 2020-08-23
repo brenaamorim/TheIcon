@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -15,12 +16,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
         window = UIWindow(frame: UIScreen.main.bounds)
+        let navigationController = UINavigationController(rootViewController: TabBarViewController())
+        navigationController.navigationBar.isHidden = true
         
-        window?.rootViewController = TabBarViewController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
+        
+        let isFirstLaunch = (UserDefaults.standard.value(forKey: "FirstLaunch") as? Bool) ?? false
+        if !isFirstLaunch {
+            UserDefaults.standard.set(true, forKey: "FirstLaunch")
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "FirstLaunchTimestamp")
+            navigationController.present(OnBoardingViewController(), animated: true)
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,6 +60,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+        if url.host == "oauth-callback" {
+            OAuthSwift.handle(url: url)
+        }
+    }
 }
 

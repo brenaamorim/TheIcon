@@ -7,21 +7,29 @@
 //
 
 import UIKit
+import OAuthSwift
 
-class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let cellId = "titleCell"
-    let CollectionsVC = CollectionsViewController.self
+    let cellId = "itensCell"
+    let collectionsVC = CollectionsViewController.self
     let searchController = UISearchController(searchResultsController: nil)
-    
+    var listOfResults = [Icon]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.navigationItem.title = "\(self.listOfResults.count) resultados"
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Coleções"
+        self.title = "Buscar"
         configureNavBar()
         //Botao de add
         collectionView.backgroundColor = .primaryColor
-        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     init() {
@@ -35,8 +43,13 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     
     func configureNavBar() {
         let navBar = self.navigationController?.navigationBar
-        navBar?.prefersLargeTitles = true
-        
+        navBar?.prefersLargeTitles = false
+        let attrs = [
+               NSAttributedString.Key.foregroundColor: UIColor.titleColor,
+               NSAttributedString.Key.font: UIFont(name: "NewYorkLarge-Medium", size: 17)
+           ]
+           navBar?.titleTextAttributes = attrs as [NSAttributedString.Key: Any]
+
         // Mudando a navbar default para a navbar vazia
         navBar?.isTranslucent = false
         navBar?.tintColor = UIColor.actionColor
@@ -65,12 +78,15 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
+        return self.listOfResults.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CollectionsCell
-        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SearchCollectionViewCell else {
+            return SearchCollectionViewCell()
+        }
+        let urlImage = listOfResults[indexPath.row].preview_url
+        cell.imageIcon.downloaded(from: urlImage ?? "Error to get preview_url")
         return cell
     }
     
@@ -96,20 +112,30 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     }
     //Espaçamento minimo vertical entre coleções
     
-    
-    
-    //    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //
-    //    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let icon = listOfResults[indexPath.item]
+        let destination = DescriptionViewController()
+        destination.dataIcon = icon
+        navigationController?.pushViewController(destination, animated: true)
+    }
 }
 
-extension SearchViewController: UISearchBarDelegate {
+extension SearchCollectionViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         var textSearchBar = searchController.searchBar.text!
         textSearchBar = textSearchBar.replacingOccurrences(of: " ", with: "%20")
+        listOfResults = [Icon]()
+        print(textSearchBar)
+        searchIcon(with: textSearchBar) { results in
+            results?.forEach({ result in
+                self.listOfResults.append(result)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            })
+        }
     }
-    
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         self.searchController.dismiss(animated: true, completion: nil)
@@ -117,7 +143,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchCollectionViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
     }

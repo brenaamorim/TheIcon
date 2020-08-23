@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct OnBoardingStatus: Codable {
+    static let plistName: String = "OnBoardingStatus"
+    
+    let firstLaunch: Bool = true
+    let firstLaunchTimestamp: TimeInterval = Date().timeIntervalSince1970
+    
+    private enum CodingKeys: String, CodingKey {
+        case firstLaunch, firstLaunchTimestamp
+    }
+}

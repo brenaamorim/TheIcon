@@ -7,22 +7,23 @@
 //
 
 import UIKit
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let navigationController = UINavigationController(rootViewController: TabBarViewController())
-        navigationController.navigationBar.barTintColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 1.00)
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController.navigationBar.tintColor = .white
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-        
+        configureForTests()
+
+//        window = UIWindow(frame: UIScreen.main.bounds)        
+//        let navigationController = UINavigationController(rootViewController: TabBarViewController())
+//        navigationController.navigationBar.barTintColor = .primaryColor
+//        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.titleColor ?? UIColor.black]
+//        navigationController.navigationBar.tintColor = UIColor.actionColor
+//        window?.rootViewController = navigationController
+//        window?.makeKeyAndVisible()
+//        
         return true
     }
 
@@ -39,7 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+      if url.host == "oauth-callback" {
+        OAuthSwift.handle(url: url)
+      }
+      return true
+    }
+    
+    private func configureForTests() {
+        if CommandLine.arguments.contains("-reset") {
+            let defaultsName = Bundle.main.bundleIdentifier!
+            UserDefaults.standard.removePersistentDomain(forName: defaultsName)
+        }
+    }
 
 }
-

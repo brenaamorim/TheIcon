@@ -14,12 +14,12 @@ class ListCollectionViewCell: UICollectionViewCell {
         setup()
     }
     
-        override func prepareForReuse() {
-            imageIcon.image = nil
-        }
+    override func prepareForReuse() {
+        imageIcon.image = nil
+    }
     
     func setup() {
-        self.backgroundColor = UIColor.backgroundIcons
+        self.backgroundColor = UIColor.black
         self.layer.cornerRadius = 8.0
         self.addSubview(imageIcon)
         
