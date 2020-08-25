@@ -19,11 +19,10 @@ class ListCollectionViewCell: UICollectionViewCell {
     }
     
     func setup() {
-        self.backgroundColor = UIColor.black
         self.layer.cornerRadius = 8.0
         self.addSubview(imageIcon)
         
-        imageIcon.setAnchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 51, height: 51)
+        imageIcon.setAnchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: 51, height: 51)
     }
     
     var imageIcon: UIImageView = {

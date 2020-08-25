@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ObjetosEFerramentas.png",
+      "filename" : "ObjetosEFerramentas-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ObjetosEFerramentas-1.png",
+      "filename" : "ObjetosEFerramentas-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ObjetosEFerramentas-2.png",
+      "filename" : "ObjetosEFerramentas.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

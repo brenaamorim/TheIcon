@@ -26,7 +26,7 @@ class CategoriesTableViewCell: UITableViewCell {
     // Set properties
     lazy var cardCategory: UIImageView = {
         let card = UIImageView()
-        card.backgroundColor = .purple
+        card.backgroundColor = .clear
         card.translatesAutoresizingMaskIntoConstraints = false
         card.contentMode = .scaleAspectFill
         card.clipsToBounds = true
@@ -41,18 +41,34 @@ class CategoriesTableViewCell: UITableViewCell {
         return card
     }()
     
+    lazy var categoryLabel: UILabel = {
+        let categoryLabel = UILabel()
+        categoryLabel.textColor = .white
+        categoryLabel.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.medium)
+        categoryLabel.textAlignment = .center
+        categoryLabel.text = "Titulo"
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        return categoryLabel
+    }()
+    
 }
 
 // Set constraints
 extension CategoriesTableViewCell {
     private func setupUI() {
         self.contentView.addSubview(cardCategory)
+        self.contentView.addSubview(categoryLabel)
         
         NSLayoutConstraint.activate([
             cardCategory.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             cardCategory.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
             cardCategory.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
             cardCategory.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18)
+        ])
+        
+        NSLayoutConstraint.activate([
+            categoryLabel.centerYAnchor.constraint(equalTo: self.cardCategory.centerYAnchor),
+            categoryLabel.centerXAnchor.constraint(equalTo: self.cardCategory.centerXAnchor)
         ])
         
     }

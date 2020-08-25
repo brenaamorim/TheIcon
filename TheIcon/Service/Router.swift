@@ -16,7 +16,8 @@ enum Router {
 
 struct IconsAPI {
 //    let endpoint: String = "https://api.thenounproject.com/icon"
-    let endpointSearch: String = "https://api.thenounproject.com/icons"
+    let endpointSearch: String = "https://api.thenounproject.com"
+    let path: String = "/icons"
     
     var route: Router
     
@@ -25,7 +26,7 @@ struct IconsAPI {
 //            case .getIcon(let id):
 //                return "\(endpoint)/\(id)"
             case .searchIcons(let term):
-                return "\(endpointSearch)/\(term)"
+                return "\(endpointSearch)\(path)/\(term)"
         }
     }
 }

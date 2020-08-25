@@ -12,6 +12,7 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
     
     let cellId = "collectionsCell"
     let collectionsVC = ListOfIconsViewController.self
+    var savedIcons: [Icon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,13 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
         configureNavBar()
         collectionView.backgroundColor = .primaryColor
         collectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        
+        // Calling the repository to read all notes
+        savedIcons = IconRepository(with: "Salvos").getAll()
     }
     
     init() {
@@ -34,11 +42,11 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
         let navBar = self.navigationController?.navigationBar
         navBar?.prefersLargeTitles = false
         let attrs = [
-               NSAttributedString.Key.foregroundColor: UIColor.titleColor,
-               NSAttributedString.Key.font: UIFont(name: "NewYorkLarge-Medium", size: 17)
-           ]
-           navBar?.titleTextAttributes = attrs as [NSAttributedString.Key: Any]
-
+            NSAttributedString.Key.foregroundColor: UIColor.titleColor,
+            NSAttributedString.Key.font: UIFont(name: "NewYorkLarge-Medium", size: 17)
+        ]
+        navBar?.titleTextAttributes = attrs as [NSAttributedString.Key: Any]
+        
         // Mudando a navbar default para a navbar vazia
         navBar?.isTranslucent = false
         navBar?.tintColor = UIColor.actionColor
@@ -56,7 +64,7 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
+        return savedIcons.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,6 +72,11 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
             return ListCollectionViewCell()
         }
         
+        let currentIcon = savedIcons[indexPath.row]
+        let urlImage = currentIcon.preview_url
+        cell.imageIcon.downloaded(from: urlImage ?? "Error to get preview_url")
+        IconRepository(with: "Salvos").update(object: currentIcon)
+
         return cell
     }
     
@@ -90,9 +103,10 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
     //Espaçamento minimo vertical entre coleções
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let icon = listOfResults[indexPath.item]
+        let icon = savedIcons[indexPath.item]
         let destination = DescriptionViewController()
-        //        destination.dataIcon = icon
+        destination.dataIcon = icon
+        destination.descriptionView.saveButton.isSelected = true
         navigationController?.pushViewController(destination, animated: true)
     }
 }

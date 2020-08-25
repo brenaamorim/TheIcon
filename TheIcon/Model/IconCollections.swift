@@ -14,12 +14,12 @@ struct IconCollection: Codable {
 }
 
 struct Response: Codable {
-    let icon: Icon
+    var icon: Icon
 }
 
 struct Icon: Codable {
-    let attribution: String?
-    let preview_url: String?
+    var attribution: String?
+    var preview_url: String?
     let term: String
     let id: String?
 }

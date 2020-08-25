@@ -26,13 +26,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E684047824E6B65300AA33A0"
+               BlueprintIdentifier = "E6C5704D24F1BBF6007D37F6"
                BuildableName = "TheIconTests.xctest"
                BlueprintName = "TheIconTests"
                ReferencedContainer = "container:TheIcon.xcodeproj">
@@ -42,14 +43,14 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E684048324E6B65300AA33A0"
+               BlueprintIdentifier = "E6C5703B24F1B105007D37F6"
                BuildableName = "TheIconUITests.xctest"
                BlueprintName = "TheIconUITests"
                ReferencedContainer = "container:TheIcon.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E6C5702B24EFF273007D37F6"

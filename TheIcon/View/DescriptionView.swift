@@ -56,10 +56,8 @@ class DescriptionView: UIView {
         let label = UILabel(frame: .zero)
         label.textColor = UIColor.titleColor
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
-        label.textAlignment = .left
-//        label.text = text
-        
+        label.font = UIFont(name: "NewYorkLarge-Medium", size: 16)
+        label.textAlignment = .left        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,9 +72,13 @@ class DescriptionView: UIView {
     let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Salvar na coleção", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.medium)
+        button.setTitle("Remover da coleção", for: .selected)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)
         button.setTitleColor(UIColor.white, for: UIControl.State())
-        button.backgroundColor = UIColor.buttonColor
+//        button.backgroundColor = UIColor.buttonColor
+        button.setBackgroundColor(color: (UIColor.buttonColor)!, forState: .normal)
+        button.setBackgroundColor(color: (UIColor.actionColor)!, forState: .selected)
+        // Mudança no background do button para adicionanr ou remover
         button.layer.cornerRadius = 8.0
         return button
     }()

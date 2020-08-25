@@ -13,7 +13,7 @@ class OnBoardingView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "NewYorkLarge-Semibold", size: 32)
-        label.textColor = UIColor.titleColor
+        label.textColor = UIColor.white
         label.numberOfLines = 0
         label.text = "The Icon"
         return label
@@ -22,11 +22,11 @@ class OnBoardingView: UIView {
     lazy var bodyLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "NewYorkLarge-Medium", size: 18)
-        label.textColor = UIColor.titleColor
+        label.textColor = UIColor.white
         label.numberOfLines = 0
         label.text = """
         
-        🧩 The Icon is a way to keep your ideas
+        💡 The Icon is a way to keep your ideas
         
         1. You can search by name or categories
         
@@ -40,11 +40,19 @@ class OnBoardingView: UIView {
     
     lazy var startButton: UIButton = {
         let button = UIButton()
-        button.setTitle("START WRITING", for: .normal)
+        button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.tintColor = .white
         button.backgroundColor = UIColor.buttonColor
         button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        
+        //Corner radius and shadow
+        self.layer.masksToBounds = false
+        button.layer.cornerRadius = 8.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        button.layer.shadowRadius = 8.0
+        button.layer.shadowOpacity = 0.2
         return button
     }()
     
@@ -55,7 +63,7 @@ class OnBoardingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.actionColor
         setupConstraints()
     }
     

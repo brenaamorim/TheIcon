@@ -16,6 +16,7 @@ class CategoriesViewController: UIViewController {
     var resultsByCategory = [Icon]()
     
     var categories: [String] = ["Climate", "Communication", "Nature", "Objects"]
+    var categoriesText: [String] = ["Clima", "Comunicação", "Natureza", "Objetos"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,7 @@ class CategoriesViewController: UIViewController {
         tableView.rowHeight = 103
         tableView.sectionHeaderHeight = 16
         tableView.tableAutoLayout(to: view)
+        tableView.separatorStyle = .none
         return tableView
     }()
 }
@@ -101,7 +103,7 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let currentItem = categories[indexPath.row]
         cell.cardCategory.image = UIImage(named: currentItem)
-        
+        cell.categoryLabel.text = categoriesText[indexPath.row]
         return cell
     }
     
@@ -110,11 +112,12 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Inabilitando interações do usuario (evitando multiplas chamadas de API)
-        tableView.isUserInteractionEnabled = false
+//        tableView.isUserInteractionEnabled = false
         termIcon = categories[indexPath.row]
-        print(termIcon)
+        resultsByCategory = [Icon]()
         searchIcon(with: termIcon) { results in
             results?.forEach({ result in
                 self.resultsByCategory.append(result)
@@ -128,6 +131,24 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
         //Consumindo a API quando o usuário seleciona uma categoria
         //Dar feedback pro usuario (simbolo carregando)
     }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = .white
+        }
+    }
+    //background da célula quando selecionada
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+
+        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow,
+            indexPathForSelectedRow == indexPath {
+            tableView.deselectRow(at: indexPath, animated: false)
+            return nil
+        }
+        return indexPath
+    }
+    //Deselecionando uma celula anteriormente selecionada
     
 }
 

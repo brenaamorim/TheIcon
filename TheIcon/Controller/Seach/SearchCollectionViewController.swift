@@ -71,7 +71,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         
         // Don't hide the navigation bar because the search bar is in it.
         searchController.hidesNavigationBarDuringPresentation = true
-        searchController.searchBar.placeholder = "Buscar"
+        searchController.searchBar.placeholder = "Buscar Icones"
         searchController.searchResultsUpdater = self
         searchController.isActive = true
     }

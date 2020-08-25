@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E62A83FB24F3DBCA00449087 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A83FA24F3DBCA00449087 /* RouteTests.swift */; };
+		E62A83FE24F5349400449087 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A83FD24F5349400449087 /* Repository.swift */; };
+		E62A840024F535EC00449087 /* IconRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A83FF24F535EC00449087 /* IconRepository.swift */; };
+		E62A840324F537D300449087 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A840224F537D300449087 /* PlistManager.swift */; };
+		E62A840524F53F8500449087 /* IconViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A840424F53F8500449087 /* IconViewModel.swift */; };
+		E62A840724F54D0700449087 /* UIButtonBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A840624F54D0700449087 /* UIButtonBackground.swift */; };
 		E62EA57424F21F4800A33C00 /* NewYorkLarge-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E62EA57324F21F4800A33C00 /* NewYorkLarge-Medium.otf */; };
 		E62EA57724F221B600A33C00 /* NewYorkLarge-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E62EA57624F221B600A33C00 /* NewYorkLarge-Semibold.otf */; };
 		E684046724E6B65100AA33A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684046624E6B65100AA33A0 /* AppDelegate.swift */; };
@@ -59,6 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E62A83FA24F3DBCA00449087 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
+		E62A83FD24F5349400449087 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		E62A83FF24F535EC00449087 /* IconRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconRepository.swift; sourceTree = "<group>"; };
+		E62A840224F537D300449087 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
+		E62A840424F53F8500449087 /* IconViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconViewModel.swift; sourceTree = "<group>"; };
+		E62A840624F54D0700449087 /* UIButtonBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonBackground.swift; sourceTree = "<group>"; };
 		E62EA57324F21F4800A33C00 /* NewYorkLarge-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NewYorkLarge-Medium.otf"; path = "../../../../../../../Library/Fonts/NewYorkLarge-Medium.otf"; sourceTree = "<group>"; };
 		E62EA57624F221B600A33C00 /* NewYorkLarge-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NewYorkLarge-Semibold.otf"; path = "../../../../../../../Library/Fonts/NewYorkLarge-Semibold.otf"; sourceTree = "<group>"; };
 		E684046324E6B65100AA33A0 /* TheIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +136,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E62A83FC24F5347B00449087 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E62A83FD24F5349400449087 /* Repository.swift */,
+				E62A83FF24F535EC00449087 /* IconRepository.swift */,
+				E62A840424F53F8500449087 /* IconViewModel.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E62A840124F537B800449087 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E62A840224F537D300449087 /* PlistManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		E62EA57024F21B0200A33C00 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +187,8 @@
 		E684046524E6B65100AA33A0 /* TheIcon */ = {
 			isa = PBXGroup;
 			children = (
+				E62A840124F537B800449087 /* Manager */,
+				E62A83FC24F5347B00449087 /* Protocols */,
 				E62EA57024F21B0200A33C00 /* Fonts */,
 				E684049A24E6B75B00AA33A0 /* Configurations */,
 				E684049924E6B75500AA33A0 /* Extensions */,
@@ -196,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				E684049B24E6B81000AA33A0 /* TabBarViewController.swift */,
-				E68404A524E6D29B00AA33A0 /* CategoriesAndSearch */,
+				E68404A524E6D29B00AA33A0 /* Categories */,
 				E68404A624E6D2BE00AA33A0 /* Collections */,
 				E68404F124EAC86400AA33A0 /* Seach */,
 				E68404F624EACE4400AA33A0 /* Description */,
@@ -213,6 +245,7 @@
 				E68404ED24EAC60E00AA33A0 /* SearchDelegate.swift */,
 				E684050A24EDEB7D00AA33A0 /* ImageViewDownload.swift */,
 				E684050C24EE042200AA33A0 /* AutoLayout.swift */,
+				E62A840624F54D0700449087 /* UIButtonBackground.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,13 +259,13 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
-		E68404A524E6D29B00AA33A0 /* CategoriesAndSearch */ = {
+		E68404A524E6D29B00AA33A0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				E684049F24E6B84000AA33A0 /* CategoriesViewController.swift */,
 				E68404E924EAABE100AA33A0 /* CategoriesTableViewCell.swift */,
 			);
-			path = CategoriesAndSearch;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		E68404A624E6D2BE00AA33A0 /* Collections */ = {
@@ -283,6 +316,7 @@
 			children = (
 				E6C5705024F1BBF6007D37F6 /* TheIconTests.swift */,
 				E6C5705224F1BBF6007D37F6 /* Info.plist */,
+				E62A83FA24F3DBCA00449087 /* RouteTests.swift */,
 			);
 			path = TheIconTests;
 			sourceTree = "<group>";
@@ -458,10 +492,13 @@
 				E684050B24EDEB7D00AA33A0 /* ImageViewDownload.swift in Sources */,
 				E68404A024E6B84000AA33A0 /* CategoriesViewController.swift in Sources */,
 				E68404F024EAC85B00AA33A0 /* SearchCollectionViewController.swift in Sources */,
+				E62A840724F54D0700449087 /* UIButtonBackground.swift in Sources */,
 				E68404F524EACD5100AA33A0 /* DescriptionViewController.swift in Sources */,
 				E6C5705B24F1DB95007D37F6 /* OnBoardingViewController.swift in Sources */,
 				E68404F324EACB5A00AA33A0 /* SearchCollectionViewCell.swift in Sources */,
 				E6C5705924F1DB4C007D37F6 /* OnBoardingView.swift in Sources */,
+				E62A840524F53F8500449087 /* IconViewModel.swift in Sources */,
+				E62A83FE24F5349400449087 /* Repository.swift in Sources */,
 				E68404EA24EAABE100AA33A0 /* CategoriesTableViewCell.swift in Sources */,
 				E6C5705E24F1DE9B007D37F6 /* OnBoardingStatus.swift in Sources */,
 				E684050924ED6C5C00AA33A0 /* Service.swift in Sources */,
@@ -475,9 +512,11 @@
 				E68404FA24EAD4DE00AA33A0 /* DescriptionView.swift in Sources */,
 				E6C5704724F1B36C007D37F6 /* ListOfIconsViewController.swift in Sources */,
 				E68404A824E6DC1B00AA33A0 /* CollectionsCell.swift in Sources */,
+				E62A840324F537D300449087 /* PlistManager.swift in Sources */,
 				E684046724E6B65100AA33A0 /* AppDelegate.swift in Sources */,
 				E684049C24E6B81000AA33A0 /* TabBarViewController.swift in Sources */,
 				E684046924E6B65100AA33A0 /* SceneDelegate.swift in Sources */,
+				E62A840024F535EC00449087 /* IconRepository.swift in Sources */,
 				E68404EC24EABED500AA33A0 /* TableViewAutoLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6C5705124F1BBF6007D37F6 /* TheIconTests.swift in Sources */,
+				E62A83FB24F3DBCA00449087 /* RouteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

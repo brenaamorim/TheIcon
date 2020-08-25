@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Natureza-3.png",
+      "filename" : "Lamp Icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Natureza-4.png",
+      "filename" : "Lamp Icon-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Natureza.png",
+      "filename" : "Lamp Icon-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -13,6 +13,7 @@ struct OnBoardingStatus: Codable {
     
     let firstLaunch: Bool = true
     let firstLaunchTimestamp: TimeInterval = Date().timeIntervalSince1970
+    //timeInterval é necessário?
     
     private enum CodingKeys: String, CodingKey {
         case firstLaunch, firstLaunchTimestamp
