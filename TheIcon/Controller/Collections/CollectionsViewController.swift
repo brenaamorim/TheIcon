@@ -12,6 +12,9 @@ import OAuthSwift
 class CollectionsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "collectionsCell"
+    let repository = IconRepository(with: "Salvos")
+    var saved = [Icon]()
+
     let collectionsVC = CollectionsViewController.self
     
     override func viewDidLoad() {
@@ -70,7 +73,21 @@ class CollectionsViewController: UICollectionViewController, UICollectionViewDel
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CollectionsCell else {
             return CollectionsCell()
         }
+        saved = repository.getAll()
         
+        if saved.count >= 1 {
+            cell.firstIconImage.downloaded(from: saved[0].preview_url!)
+        }
+        if saved.count >= 2 {
+            cell.secondIconImage.downloaded(from: saved[1].preview_url!)
+        }
+        if saved.count >= 3 {
+            cell.thirdIconImage.downloaded(from: saved[2].preview_url!)
+        }
+        if saved.count >= 4 {
+            cell.fourthIconImage.downloaded(from: saved[3].preview_url!)
+        }
+
         return cell
     }
     
@@ -97,9 +114,7 @@ class CollectionsViewController: UICollectionViewController, UICollectionViewDel
     //Espaçamento minimo vertical entre coleções
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let icon = listOfResults[indexPath.item]
         let destination = ListOfIconsViewController()
-        //        destination.dataIcon = icon
         navigationController?.pushViewController(destination, animated: true)
     }
 }

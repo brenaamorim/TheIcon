@@ -82,8 +82,6 @@ class DescriptionViewController: UIViewController {
         } else {
             repository.delete(object: dataIcon)
         }
-        print(repository.getAll())
-//        repository.update(object: dataIcon)
     }
     //Persistencia dos dados da API
     

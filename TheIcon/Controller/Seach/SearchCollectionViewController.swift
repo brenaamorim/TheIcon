@@ -126,7 +126,6 @@ extension SearchCollectionViewController: UISearchBarDelegate {
         var textSearchBar = searchController.searchBar.text!
         textSearchBar = textSearchBar.replacingOccurrences(of: " ", with: "%20")
         listOfResults = [Icon]()
-        print(textSearchBar)
         searchIcon(with: textSearchBar) { results in
             results?.forEach({ result in
                 self.listOfResults.append(result)
