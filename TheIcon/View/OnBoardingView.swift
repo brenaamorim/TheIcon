@@ -21,27 +21,32 @@ class OnBoardingView: UIView {
     
     lazy var bodyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "NewYorkLarge-Medium", size: 18)
+        label.font = UIFont(name: "NewYorkLarge-Medium", size: 16)
         label.textColor = UIColor.white
+        label.textAlignment = .left
         label.numberOfLines = 0
         label.text = """
         
-        💡 The Icon is a way to keep your ideas
         
-        1. You can search by name or categories
+        The Icon is a way to keep your ideas
         
-        2. Save an icon
-        
-        3. Create new folders taping the + button on the right corner
-        
+        You can search by name or categories, save an icon
+        and create new folders taping the + button on the right corner
         """
         return label
+    }()
+    
+    let Image: UIImageView = {
+        let image = UIImageView(frame: .zero)
+        image.image = #imageLiteral(resourceName: "ideaImage")
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
     lazy var startButton: UIButton = {
         let button = UIButton()
         button.setTitle("NEXT", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = .white
         button.backgroundColor = UIColor.buttonColor
         button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
@@ -76,25 +81,33 @@ class OnBoardingView: UIView {
         self.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 40),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75)
+        ])
+        
+        self.addSubview(Image)
+        NSLayoutConstraint.activate([
+            Image.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            Image.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 80),
+            Image.heightAnchor.constraint(equalToConstant: 250),
+            Image.widthAnchor.constraint(equalToConstant: 250)
         ])
         
         self.addSubview(bodyLabel)
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bodyLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
-            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            bodyLabel.widthAnchor.constraint(equalTo: titleLabel.widthAnchor)
+            bodyLabel.topAnchor.constraint(equalTo: Image.bottomAnchor, constant: 56),
+            bodyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            bodyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
         ])
         
         self.addSubview(startButton)
         startButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
+            startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             startButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -90),
-            startButton.widthAnchor.constraint(equalTo: bodyLabel.widthAnchor, multiplier: 1),
+            startButton.widthAnchor.constraint(equalTo: Image.widthAnchor, multiplier: 1),
             startButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }

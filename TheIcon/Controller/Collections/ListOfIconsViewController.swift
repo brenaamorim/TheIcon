@@ -103,7 +103,8 @@ class ListOfIconsViewController: UICollectionViewController, UICollectionViewDel
     //Espaçamento minimo vertical entre coleções
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let icon = savedIcons[indexPath.item]
+        let icon = try? savedIcons[indexPath.item]
+        // Erro index
         let destination = DescriptionViewController()
         destination.dataIcon = icon
         destination.descriptionView.saveButton.isSelected = true

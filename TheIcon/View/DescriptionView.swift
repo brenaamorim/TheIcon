@@ -32,7 +32,9 @@ class DescriptionView: UIView {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 24)
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
         ])
         
         NSLayoutConstraint.activate([
@@ -55,9 +57,9 @@ class DescriptionView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.textColor = UIColor.titleColor
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.font = UIFont(name: "NewYorkLarge-Medium", size: 16)
-        label.textAlignment = .left        
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

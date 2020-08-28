@@ -87,7 +87,9 @@ class CollectionsViewController: UICollectionViewController, UICollectionViewDel
         if saved.count >= 4 {
             cell.fourthIconImage.downloaded(from: saved[3].preview_url!)
         }
-
+        
+//        collectionView.reloadItems(at: [indexPath])
+        
         return cell
     }
     
